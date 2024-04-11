@@ -42,7 +42,7 @@ This project implements a TG bot that sends a random xkcd comic upon startup.
 
 ```
 TG_BOT_TOKEN=tg_bot_token
-TG_CHAT_ID="@tg_channel_tag"
+TG_CHAT_ID=@tg_channel_tag
 ```
 
 ## Launch
