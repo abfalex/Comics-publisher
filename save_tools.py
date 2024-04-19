@@ -32,7 +32,7 @@ def get_comic_info(comic_number):
         return None, None
 
 
-def save_comic():
+def save_comic(directory_path):
     try:
         number_first_comic = 1
         latest_comic_number = 2917
@@ -45,7 +45,7 @@ def save_comic():
         if comic_image_url:
             download_and_save_file(
                 url=comic_image_url,
-                folder_path="Files",
+                folder_path=directory_path,
                 file_name=comic_title
             )
             return comic_comment
