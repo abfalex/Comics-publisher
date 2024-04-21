@@ -2,7 +2,7 @@ import logging
 import os
 import asyncio
 import argparse
-
+import requests
 from save_tools import save_comic
 from aiogram.exceptions import TelegramAPIError
 from aiogram import Dispatcher, Bot, types
@@ -20,7 +20,7 @@ async def main():
     bot = Bot(token=tg_bot_token)
     dp = Dispatcher()
 
-    parser = argparse.ArgumentParser(description='Отправка комиксов в Телеграм-канал')
+    parser = argparse.ArgumentParser(description='Sending comics in a Telegram channel')
     parser.add_argument('--folder',
                         type=str,
                         default='Files',
@@ -43,6 +43,8 @@ async def main():
             logging.info(f'Submitting a comic: {first_file_path}')
     except TelegramAPIError as e:
         logging.error(f"Error sending comic {first_file_path}: {e}")
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Failed to request: {e}")
     finally:
         os.remove(first_file_path)
 
